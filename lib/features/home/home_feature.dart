@@ -8,7 +8,7 @@ class HomeFeature extends Feature {
   void get dependencies => {getIt.registerLazySingleton(() => HomeBloc())};
   @override
   String get name => '/home';
-
+  static HomeFeature get to => AppFeatures.get();
   @override
   List<GoRoute> get routes => [
     GoRoute(path: name, name: name, builder: (_, state) => const HomePage()),

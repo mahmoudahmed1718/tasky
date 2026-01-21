@@ -11,7 +11,7 @@ class ApiUtils {
       baseUrl: 'https://derman.code-link.com/api/',
       getToken: () => getIt.get<AppStorage>().getToken(),
       tokenType: ApiRequestOptions.bearer,
-      enableLog: true,
+
       onError: (error) {
         NotificationUtil.showError(error.message);
       },

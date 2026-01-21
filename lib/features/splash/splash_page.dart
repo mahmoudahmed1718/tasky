@@ -1,10 +1,6 @@
-import 'package:app_features/app_features.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/features/splash/splash_feature.dart';
 import 'package:tasky/theme/app_colors.dart';
 import '../../core/utils/api_util.dart';
-
-import '../home/home_feature.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
