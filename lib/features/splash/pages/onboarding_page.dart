@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tasky/config/app_config.dart';
+import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/core/utils/assets.dart';
 import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/core/widgets/gester_button.dart';
@@ -33,7 +35,13 @@ class OnboardingPage extends StatelessWidget {
             SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: GesterButton(text: "Let's Get Started"),
+              child: GesterButton(
+                text: "Let's Get Started",
+
+                onTap: () {
+                  getIt.get<AppStorage>().setOnboardingSeen(true);
+                },
+              ),
             ),
           ],
         ),
