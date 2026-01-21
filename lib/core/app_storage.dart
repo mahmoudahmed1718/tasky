@@ -11,6 +11,7 @@ class AppStorage {
   static const _defaultLocale = 'ar';
   static const _email = 'email';
   static const _password = 'password';
+  static const _isonboardingSeen = 'is_onboarding_seen';
   static final Box _appBox = Hive.box(_appBoxName);
 
   static Future<void> init() async {
@@ -68,5 +69,13 @@ class AppStorage {
 
   String? getPassword() {
     return _appBox.get(_password);
+  }
+
+  Future<void> setOnboardingSeen(bool isSeen) async {
+    await _appBox.put(_isonboardingSeen, isSeen);
+  }
+
+  bool getOnboardingSeen() {
+    return _appBox.get(_isonboardingSeen, defaultValue: false);
   }
 }
