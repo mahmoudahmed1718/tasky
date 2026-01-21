@@ -1,4 +1,7 @@
+import 'package:app_features/app_features.dart';
 import 'package:flutter/material.dart';
+import 'package:tasky/features/home/home_feature.dart';
+import 'package:tasky/features/splash/splash_feature.dart';
 import 'package:tasky/theme/app_colors.dart';
 import '../../core/utils/api_util.dart';
 
@@ -17,10 +20,10 @@ class _SplashPageState extends State<SplashPage> {
       ApiUtils.init(context);
     });
 
-    // Future.delayed(const Duration(seconds: 3), () {
-    //   // AppFeatures.get<HomeFeature>().go();
-    //   // SplashFeature.to.goToOnboardingPage();
-    // });
+    Future.delayed(const Duration(seconds: 3), () {
+      // AppFeatures.get<HomeFeature>().go();
+      SplashFeature.to.goToOnboardingPage();
+    });
   }
 
   @override

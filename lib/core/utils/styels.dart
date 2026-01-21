@@ -1,8 +1,13 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 abstract class Styels {
   static const textStyle24 = TextStyle(
     fontSize: 24,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+  );
+  static const textStyle19 = TextStyle(
+    fontSize: 19,
     fontWeight: FontWeight.w700,
   );
   static const textStyle14 = TextStyle(
