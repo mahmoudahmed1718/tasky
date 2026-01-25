@@ -7,10 +7,10 @@ class CustomTextFormFieldWidget extends StatelessWidget {
     this.obscureText,
     this.controller,
     this.keyboardType,
-    this.onchanged,
+    this.onSaved,
     required this.hintText,
   });
-  final ValueChanged<String>? onchanged;
+  final void Function(String?)? onSaved;
   final Widget? suffixIcon;
   final String hintText;
   final bool? obscureText;
@@ -25,7 +25,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
         }
         return null;
       },
-      onChanged: onchanged,
+      onSaved: onSaved,
       keyboardType: keyboardType,
       controller: controller,
       obscureText: obscureText ?? false,

@@ -22,6 +22,7 @@ class CustomTextFormFieldPhoneRegister extends StatelessWidget {
         return null;
       },
       controller: phoneController,
+      onChanged: (value) => phoneController.text = value,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         hintText: "123 456 7890",

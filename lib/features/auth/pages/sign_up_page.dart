@@ -51,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     const SizedBox(height: 12),
                     CustomTextFormFieldWidget(
                       hintText: "Name",
-                      onchanged: (value) {},
+                      onSaved: (value) {},
                     ),
                     const SizedBox(height: 12),
                     CustomTextFormFieldPhoneRegister(

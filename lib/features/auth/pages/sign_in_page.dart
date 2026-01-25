@@ -23,6 +23,9 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool obscureText = true;
+  String? password;
+  String? phone;
+
   @override
   void dispose() {
     phoneController.dispose();
@@ -58,9 +61,15 @@ class _SignInPageState extends State<SignInPage> {
                         const SizedBox(height: 31),
                         CustomTextFormFieldPhoneRegister(
                           phoneController: phoneController,
+                          onchanged: (value) {
+                            phone = value.toString();
+                          },
                         ),
                         const SizedBox(height: 16),
                         CustomTextFormFieldWidget(
+                          onSaved: (value) {
+                            password = value.toString();
+                          },
                           hintText: "Password",
                           obscureText: obscureText,
                           suffixIcon: IconButton(
@@ -79,7 +88,17 @@ class _SignInPageState extends State<SignInPage> {
                         ),
 
                         const SizedBox(height: 24),
-                        GesterButton(text: "Sign In", onTap: () {}),
+                        GesterButton(
+                          text: "Sign In",
+                          onTap: () async {
+                            print('Phone: ${phoneController.text}');
+                            print('Password: ${passwordController.text}');
+                            await AuthBloc.to.signIn(
+                              phone: phoneController.text,
+                              password: passwordController.text,
+                            );
+                          },
+                        ),
                         const SizedBox(height: 18),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
