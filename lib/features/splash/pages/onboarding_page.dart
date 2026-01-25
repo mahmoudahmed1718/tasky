@@ -38,6 +38,7 @@ class OnboardingPage extends StatelessWidget {
               child: GesterButton(
                 text: "Let's Get Started",
 
+                ///
                 onTap: () {
                   getIt.get<AppStorage>().setOnboardingSeen(true);
                 },
