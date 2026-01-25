@@ -1,14 +1,6 @@
-import 'package:app_features/app_features.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/app/app_feature.dart';
-import 'package:tasky/config/app_config.dart';
-import 'package:tasky/core/app_storage.dart';
-import 'package:tasky/features/auth/auth_feature.dart';
-import 'package:tasky/features/home/home_feature.dart';
 import 'package:tasky/features/splash/actions/init_feature_action.dart';
-import 'package:tasky/features/splash/splash_feature.dart';
 import 'package:tasky/theme/app_colors.dart';
-import '../../core/utils/api_util.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
