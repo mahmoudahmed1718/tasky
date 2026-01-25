@@ -28,7 +28,7 @@ class CustomTextFormFieldPhoneRegister extends StatelessWidget {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         prefixIcon: CountryCodePicker(
           onChanged: onchanged,
-          initialSelection: 'EG', // Egypt default
+          initialSelection: 'EG',
           favorite: ['+20', 'EG'],
           showCountryOnly: false,
           showOnlyCountryWhenClosed: false,
