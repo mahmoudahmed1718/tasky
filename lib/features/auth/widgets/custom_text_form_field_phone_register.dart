@@ -1,23 +1,33 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key, required this.phoneController});
+class CustomTextFormFieldPhoneRegister extends StatelessWidget {
+  const CustomTextFormFieldPhoneRegister({
+    super.key,
+    required this.phoneController,
+    this.onchanged,
+  });
 
   final TextEditingController phoneController;
 
+  final void Function(CountryCode)? onchanged;
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter your phone number';
+        }
+        return null;
+      },
       controller: phoneController,
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         hintText: "123 456 7890",
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         prefixIcon: CountryCodePicker(
-          onChanged: (code) {
-            // print("Selected country: ${code.dialCode}");
-          },
+          onChanged: onchanged,
           initialSelection: 'EG', // Egypt default
           favorite: ['+20', 'EG'],
           showCountryOnly: false,
