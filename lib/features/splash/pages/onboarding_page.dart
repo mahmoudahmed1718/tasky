@@ -5,6 +5,7 @@ import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/core/utils/assets.dart';
 import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/core/widgets/gester_button.dart';
+import 'package:tasky/features/auth/auth_feature.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -41,6 +42,7 @@ class OnboardingPage extends StatelessWidget {
                 ///
                 onTap: () {
                   getIt.get<AppStorage>().setOnboardingSeen(true);
+                  AuthFeature.to.goToSignInPage();
                 },
               ),
             ),
