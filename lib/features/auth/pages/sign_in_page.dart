@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tasky/core/utils/assets.dart';
 import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/core/widgets/gester_button.dart';
+import 'package:tasky/features/auth/auth_feature.dart';
 import 'package:tasky/features/auth/widgets/custom_text_form_field_phone_register.dart';
 import 'package:tasky/features/auth/widgets/custom_text_form_filed_widget.dart';
 import 'package:tasky/theme/app_colors.dart';
@@ -80,7 +81,9 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         const SizedBox(width: 4),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            AuthFeature.to.goToSignUpPage();
+                          },
                           child: Text(
                             "Sign Up Here",
                             style: Styels.textStyle14.copyWith(
