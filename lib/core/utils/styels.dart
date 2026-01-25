@@ -13,5 +13,6 @@ abstract class Styels {
   static const textStyle14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
+    color: Color(0XFF7F7F7F),
   );
 }

@@ -13,5 +13,5 @@ class AuthFeature extends Feature {
   List<GoRoute> get routes => [
     GoRoute(path: name, name: name, builder: (_, state) => const SignInPage()),
   ];
-  void goToSignInPage() => push(name: name);
+  void goToSignInPage() => pushReplacement(name: name);
 }
