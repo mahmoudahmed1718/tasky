@@ -5,6 +5,7 @@ import 'package:tasky/config/app_config.dart';
 import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
 import 'package:tasky/features/home/home_feature.dart';
+import 'package:tasky/features/splash/actions/init_feature_action.dart';
 import 'package:tasky/features/splash/splash_feature.dart';
 import 'package:tasky/theme/app_colors.dart';
 import '../../core/utils/api_util.dart';
@@ -21,16 +22,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ApiUtils.init(context);
-    });
-
-    Future.delayed(const Duration(seconds: 3), () {
-      final isOnboardingSeen = getIt.get<AppStorage>().getOnboardingSeen();
-      if (isOnboardingSeen) {
-        AuthFeature.to.goToSignInPage();
-      } else {
-        SplashFeature.to.goToOnboardingPage();
-      }
+      InitFeatureAction.execute(context);
     });
   }
 

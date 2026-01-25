@@ -13,4 +13,6 @@ class HomeFeature extends Feature {
   List<GoRoute> get routes => [
     GoRoute(path: name, name: name, builder: (_, state) => const HomePage()),
   ];
+
+  void goToHomePage() => push(name: name);
 }
