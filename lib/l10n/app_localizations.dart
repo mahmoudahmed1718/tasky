@@ -105,6 +105,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'ar'**
   String get home;
+
+  /// No description provided for @noAccount.
+  ///
+  /// In ar, this message translates to:
+  /// **'ترجمة_No Account'**
+  String get noAccount;
 }
 
 class _AppLocalizationsDelegate

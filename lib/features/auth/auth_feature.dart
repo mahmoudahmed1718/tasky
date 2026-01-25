@@ -20,6 +20,6 @@ class AuthFeature extends Feature {
       builder: (_, state) => const SignUpPage(),
     ),
   ];
-  void goToSignInPage() => pushReplacement(name: name);
+
   void goToSignUpPage() => push(name: signUp);
 }

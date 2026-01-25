@@ -4,9 +4,10 @@ import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'l10n/app_localizations.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:tasky/l10n/app_localizations.dart';
 
 import '../config/app_config.dart';
 import '../core/app_storage.dart';

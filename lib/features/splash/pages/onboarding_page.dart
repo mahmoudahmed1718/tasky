@@ -42,7 +42,7 @@ class OnboardingPage extends StatelessWidget {
                 ///
                 onTap: () {
                   getIt.get<AppStorage>().setOnboardingSeen(true);
-                  AuthFeature.to.goToSignInPage();
+                  AuthFeature.to.go();
                 },
               ),
             ),

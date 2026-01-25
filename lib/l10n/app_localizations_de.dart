@@ -10,4 +10,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get home => 'de';
+
+  @override
+  String get noAccount => 'Über_No Account';
 }

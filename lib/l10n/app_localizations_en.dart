@@ -10,4 +10,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get home => 'en';
+
+  @override
+  String get noAccount => 'You don\'t have an account?';
 }

@@ -11,12 +11,12 @@ class InitFeatureAction {
 
     await Future.delayed(const Duration(seconds: 3));
 
-    final isOnboardingSeen = getIt.get<AppStorage>().getOnboardingSeen();
+    final isOnboardingSeen = AppStorage.to.getOnboardingSeen();
 
     if (isOnboardingSeen) {
-      AuthFeature.to.goToSignInPage();
+      AuthFeature.to.go();
     } else {
-      SplashFeature.to.goToOnboardingPage();
+      SplashFeature.to.go;
     }
   }
 }

@@ -1,1 +1,4 @@
-{"home":"en"}
+{
+  "home": "en",
+  "noAccount": "You don't have an account?"
+}

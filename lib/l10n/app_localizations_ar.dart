@@ -10,4 +10,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get home => 'ar';
+
+  @override
+  String get noAccount => 'ترجمة_No Account';
 }
