@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tasky/core/extensions/context_extension.dart';
 import 'package:tasky/core/utils/assets.dart';
 import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/core/widgets/gester_button.dart';
@@ -33,11 +34,11 @@ class _SignInPageState extends State<SignInPage> {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: ContextExtension(context).height * 0.5,
               child: SvgPicture.asset(
                 Assets.assetsImagesSplashImage,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
+                width: ContextExtension(context).width,
+                fit: BoxFit.fill,
               ),
             ),
             const SizedBox(height: 24),
@@ -88,6 +89,7 @@ class _SignInPageState extends State<SignInPage> {
                             "Sign Up Here",
                             style: Styels.textStyle14.copyWith(
                               color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
