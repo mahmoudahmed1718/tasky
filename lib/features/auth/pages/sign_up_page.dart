@@ -16,11 +16,8 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final TextEditingController phoneController = TextEditingController();
-
   @override
   void dispose() {
-    phoneController.dispose();
     super.dispose();
   }
 

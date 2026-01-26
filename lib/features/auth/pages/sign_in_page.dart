@@ -1,7 +1,9 @@
 import 'package:app_forms/app_forms.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:tasky/core/extensions/context_extension.dart';
 import 'package:tasky/core/utils/assets.dart';
 import 'package:tasky/core/utils/styels.dart';
@@ -9,8 +11,7 @@ import 'package:tasky/core/widgets/gester_button.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
 import 'package:tasky/features/auth/bloc/auth_bloc.dart';
 import 'package:tasky/features/auth/bloc/auth_state.dart';
-import 'package:tasky/features/auth/widgets/custom_text_form_field_phone_register.dart';
-import 'package:tasky/features/auth/widgets/custom_text_form_filed_widget.dart';
+
 import 'package:tasky/theme/app_colors.dart';
 
 class SignInPage extends StatefulWidget {
@@ -21,21 +22,15 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
   bool obscureText = true;
-  String? password;
-  String? phone;
 
   @override
   void dispose() {
-    phoneController.dispose();
-    passwordController.dispose();
     super.dispose();
   }
 
   final _formKey = GlobalKey<FormBuilderState>();
-
+  String? coutryCode = "+20";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,25 +51,58 @@ class _SignInPageState extends State<SignInPage> {
                 const SizedBox(height: 24),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Form(
+                  child: FormBuilder(
+                    key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Login", style: Styels.textStyle24),
                         const SizedBox(height: 31),
+                        FormBuilderTextField(
+                          name: "phone",
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            prefixIcon: CountryCodePicker(
+                              initialSelection: 'EG',
+                              favorite: ['+20', 'EG'],
+                              onChanged: (code) {
+                                setState(() {
+                                  coutryCode = code.dialCode;
+                                });
+                              },
+                            ),
+                            hintText: "123 456-7890",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(12),
+                              ),
+                            ),
+                          ),
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(
+                              errorText: "Phone number required",
+                            ),
+                            FormBuilderValidators.numeric(
+                              errorText: "Enter valid number",
+                            ),
+                          ]),
+                        ),
+                        const SizedBox(height: 16),
 
                         FormBuilderTextField(
                           name: "password",
-                          controller: passwordController,
                           obscureText: obscureText,
-                          onChanged: (value) {
-                            password = value;
-                          },
+                          validator: FormBuilderValidators.required(
+                            errorText: "Password is required",
+                          ),
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
+                            hintText: "Password...",
+
+                            border: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(12),
+                              ),
                             ),
-                            labelText: "Password",
                             suffixIcon: IconButton(
                               icon: Icon(
                                 obscureText
@@ -89,16 +117,28 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ),
                         ),
+
                         const SizedBox(height: 24),
                         GesterButton(
                           text: "Sign In",
-                          onTap: () async {
-                            print('Phone: ${phoneController.text}');
-                            print('Password: ${passwordController.text}');
-                            await AuthBloc.to.signIn(
-                              phone: phoneController.text,
-                              password: passwordController.text,
-                            );
+                          onTap: () {
+                            print('Sign In tapped');
+                            if (_formKey.currentState?.saveAndValidate() ??
+                                false) {
+                              final formData = _formKey.currentState!.value;
+                              final fullPhone =
+                                  "$coutryCode${formData['phone']}";
+                              final finalData = {
+                                ...formData,
+                                "phone": fullPhone,
+                              };
+                              print('Form Data: $finalData');
+                            }
+
+                            // await AuthBloc.to.signIn(
+                            //   phone: phoneController.text,
+                            //   password: passwordController.text,
+                            // );
                           },
                         ),
                         const SizedBox(height: 18),
