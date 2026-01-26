@@ -2,6 +2,7 @@ class UserModel {
   String? id;
   String? accessToken;
   String? refreshToken;
+
   UserModel({this.id, this.accessToken, this.refreshToken});
 
   UserModel.fromJson(Map<String, dynamic> json) {

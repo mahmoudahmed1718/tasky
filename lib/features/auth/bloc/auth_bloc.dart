@@ -3,6 +3,7 @@ import 'package:tasky/app/models/user_model.dart';
 import 'package:tasky/app/utils/notification_util.dart';
 import 'package:tasky/config/app_config.dart';
 import 'package:tasky/features/auth/actions/sign_in_action.dart';
+import 'package:tasky/features/auth/actions/sign_up_action.dart';
 import 'package:tasky/features/auth/bloc/auth_state.dart';
 
 class AuthBloc extends Cubit<AuthState> {
@@ -38,6 +39,45 @@ class AuthBloc extends Cubit<AuthState> {
           },
         )
         .whereMap({'phone': phone, 'password': password})
+        .execute();
+  }
+
+  Future<void> signUp({
+    required String phone,
+    required String passWord,
+    required String displayName,
+    required int numberOfExperience,
+    required String level,
+    required String address,
+  }) async {
+    await SignUpAction()
+        .listen(
+          onStart: () => NotificationUtil.showLoading(),
+          onDone: () => NotificationUtil.hideLoading(),
+
+          onSuccess: (reponse) {
+            emit(
+              state.copyWith(
+                user: UserModel(
+                  id: reponse?.id,
+                  accessToken: reponse?.accessToken,
+                  refreshToken: reponse?.refreshToken,
+                ),
+              ),
+            );
+          },
+          onError: (error) {
+            NotificationUtil.showError(error.message);
+          },
+        )
+        .whereMap({
+          'phone': phone,
+          'passWord': passWord,
+          'displayName': displayName,
+          'numberOfExperience': numberOfExperience,
+          'level': level,
+          'address': address,
+        })
         .execute();
   }
 }
