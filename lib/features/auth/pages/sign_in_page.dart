@@ -121,7 +121,7 @@ class _SignInPageState extends State<SignInPage> {
                         const SizedBox(height: 24),
                         GesterButton(
                           text: "Sign In",
-                          onTap: () {
+                          onTap: () async {
                             print('Sign In tapped');
                             if (_formKey.currentState?.saveAndValidate() ??
                                 false) {
@@ -133,12 +133,11 @@ class _SignInPageState extends State<SignInPage> {
                                 "phone": fullPhone,
                               };
                               print('Form Data: $finalData');
+                              await AuthBloc.to.signIn(
+                                phone: finalData['phone'],
+                                password: finalData['password'],
+                              );
                             }
-
-                            // await AuthBloc.to.signIn(
-                            //   phone: phoneController.text,
-                            //   password: passwordController.text,
-                            // );
                           },
                         ),
                         const SizedBox(height: 18),

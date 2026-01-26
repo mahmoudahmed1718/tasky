@@ -2,11 +2,12 @@ import 'package:api_request/api_request.dart';
 
 class SignInAction extends ApiRequestAction<SignInResponse> {
   @override
-  bool get authRequired => true;
+  bool get authRequired => false;
 
   @override
   String get path => 'auth/login';
 
+  @override
   @override
   RequestMethod get method => RequestMethod.POST;
 

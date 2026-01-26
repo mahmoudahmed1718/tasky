@@ -71,12 +71,12 @@ class AuthBloc extends Cubit<AuthState> {
           },
         )
         .whereMap({
-          'phone': phone,
-          'passWord': passWord,
-          'displayName': displayName,
-          'numberOfExperience': numberOfExperience,
-          'level': level,
-          'address': address,
+          "phone": phone,
+          "password": passWord,
+          "displayName": displayName,
+          "experienceYears": numberOfExperience,
+          "level": level == "Mid" ? "midLevel" : level.toLowerCase(),
+          "address": address,
         })
         .execute();
   }
