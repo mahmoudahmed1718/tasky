@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tasky/config/app_config.dart';
 import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/core/utils/api_util.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
@@ -16,7 +15,7 @@ class InitFeatureAction {
     if (isOnboardingSeen) {
       AuthFeature.to.go();
     } else {
-      SplashFeature.to.go;
+      SplashFeature.to.goToOnboardingPage();
     }
   }
 }

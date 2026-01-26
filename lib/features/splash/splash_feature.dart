@@ -22,5 +22,5 @@ class SplashFeature extends Feature {
       builder: (_, state) => const OnboardingPage(),
     ),
   ];
-  void goToOnboardingPage() => pushReplacement(name: onboardingPage);
+  void goToOnboardingPage() => push(name: onboardingPage);
 }

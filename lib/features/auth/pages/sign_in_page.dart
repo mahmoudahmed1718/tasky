@@ -1,3 +1,4 @@
+import 'package:app_forms/app_forms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -33,6 +34,8 @@ class _SignInPageState extends State<SignInPage> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormBuilderState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,34 +62,33 @@ class _SignInPageState extends State<SignInPage> {
                       children: [
                         Text("Login", style: Styels.textStyle24),
                         const SizedBox(height: 31),
-                        CustomTextFormFieldPhoneRegister(
-                          phoneController: phoneController,
-                          onchanged: (value) {
-                            phone = value.toString();
-                          },
-                        ),
-                        const SizedBox(height: 16),
-                        CustomTextFormFieldWidget(
-                          onSaved: (value) {
-                            password = value.toString();
-                          },
-                          hintText: "Password",
+
+                        FormBuilderTextField(
+                          name: "password",
+                          controller: passwordController,
                           obscureText: obscureText,
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              obscureText
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
+                          onChanged: (value) {
+                            password = value;
+                          },
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
                             ),
-                            onPressed: () {
-                              setState(() {
-                                // Toggle the obscureText value
-                                obscureText = !obscureText;
-                              });
-                            },
+                            labelText: "Password",
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                obscureText
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  obscureText = !obscureText;
+                                });
+                              },
+                            ),
                           ),
                         ),
-
                         const SizedBox(height: 24),
                         GesterButton(
                           text: "Sign In",
