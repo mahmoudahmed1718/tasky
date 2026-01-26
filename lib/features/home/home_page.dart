@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasky/core/extensions/context_extension.dart';
+import 'package:tasky/features/auth/auth_feature.dart';
 
 import '../../config/app_config.dart';
 import '../../core/app_storage.dart';
@@ -45,7 +46,15 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Center(child: Text(context.loc.home)),
+      body: Center(
+        child: IconButton(
+          onPressed: () {
+            AppStorage.to.clearToken();
+            AuthFeature.to.go();
+          },
+          icon: const Icon(Icons.logout),
+        ),
+      ),
     );
   }
 }
