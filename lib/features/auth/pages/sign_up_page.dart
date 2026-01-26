@@ -62,9 +62,11 @@ class _SignUpPageState extends State<SignUpPage> {
                       _inputField(name: "name", hint: "Name..."),
                       const SizedBox(height: 14),
 
-                      Row(
-                        children: [
-                          CountryCodePicker(
+                      FormBuilderTextField(
+                        name: "phone",
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          prefixIcon: CountryCodePicker(
                             initialSelection: 'EG',
                             favorite: ['+20', 'EG'],
                             onChanged: (code) {
@@ -73,27 +75,19 @@ class _SignUpPageState extends State<SignUpPage> {
                               });
                             },
                           ),
-
-                          const SizedBox(width: 8),
-
-                          Expanded(
-                            child: FormBuilderTextField(
-                              name: "phone",
-                              keyboardType: TextInputType.phone,
-                              decoration: const InputDecoration(
-                                hintText: "123 456-7890",
-                              ),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(
-                                  errorText: "Phone number required",
-                                ),
-                                FormBuilderValidators.numeric(
-                                  errorText: "Enter valid number",
-                                ),
-                              ]),
-                            ),
+                          hintText: "123 456-7890",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
                           ),
-                        ],
+                        ),
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                            errorText: "Phone number required",
+                          ),
+                          FormBuilderValidators.numeric(
+                            errorText: "Enter valid number",
+                          ),
+                        ]),
                       ),
 
                       const SizedBox(height: 14),
@@ -198,6 +192,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
+              const SizedBox(height: 24),
             ],
           ),
         ),
