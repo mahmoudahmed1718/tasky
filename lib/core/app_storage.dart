@@ -56,6 +56,10 @@ class AppStorage {
     return _appBox.get(_token);
   }
 
+  void clearToken() async {
+    return await _appBox.delete(_token);
+  }
+
   Future<void> setEmail(String? email) async {
     await _appBox.put(_email, email);
   }
