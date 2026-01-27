@@ -7,7 +7,7 @@ import 'package:tasky/features/profile/action/profile_action.dart';
 import 'package:tasky/features/profile/bloc/profile_state.dart';
 
 class ProfileBloc extends Cubit<ProfileState> {
-  ProfileBloc() : super(ProfileState());
+  ProfileBloc() : super(const ProfileState());
   static ProfileBloc to = getIt.get();
 
   Future<void> getProfile() async {
@@ -16,7 +16,18 @@ class ProfileBloc extends Cubit<ProfileState> {
           onStart: () => NotificationUtil.showLoading(),
           onDone: () => NotificationUtil.hideLoading(),
           onSuccess: (response) {
-            emit(state.copyWith(profileModel: ProfileModel()));
+            emit(
+              state.copyWith(
+                profileModel: ProfileModel(
+                  id: response?.id,
+                  displayName: response?.displayName,
+                  address: response?.address,
+                  level: response?.level,
+                  experienceYears: response?.experienceYears,
+                  username: response?.username,
+                ),
+              ),
+            );
           },
           onError: (error) {
             NotificationUtil.showError(error.message);

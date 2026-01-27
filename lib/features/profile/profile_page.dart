@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/core/widgets/arrow_back_widget.dart';
+import 'package:tasky/features/profile/bloc/profile_bloc.dart';
+import 'package:tasky/features/profile/bloc/profile_state.dart';
 import 'package:tasky/features/profile/widgets/profile_card_widget.dart';
 import 'package:tasky/theme/app_colors.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
+  void initState() {
+    ProfileBloc.to.getProfile();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,31 +33,52 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: ListView(
-          children: [
-            Gap(16),
-            ProfileItemCard(label: 'Name', value: 'John Doe'),
-            Gap(6),
-            ProfileItemCard(
-              label: 'Phone',
-              value: '+201125144905',
-              trailing: IconButton(
-                onPressed: () {
-                  Clipboard.setData(ClipboardData(text: '+201125144905'));
-                },
-                icon: const Icon(
-                  Icons.copy_outlined,
-                  color: AppColors.primaryColor,
+        child: BlocBuilder<ProfileBloc, ProfileState>(
+          bloc: ProfileBloc.to,
+          builder: (context, state) {
+            final profileModel = state.profileModel;
+
+            return ListView(
+              children: [
+                Gap(16),
+                ProfileItemCard(
+                  label: 'Name',
+                  value: profileModel?.displayName ?? '',
                 ),
-              ),
-            ),
-            Gap(6),
-            ProfileItemCard(label: 'Level', value: '2Dd9m@example.com'),
-            Gap(6),
-            ProfileItemCard(label: 'Years of Experience', value: '**********'),
-            Gap(6),
-            ProfileItemCard(label: 'Location', value: 'English'),
-          ],
+                Gap(6),
+                ProfileItemCard(
+                  label: 'Phone',
+                  value: profileModel?.username ?? '',
+                  trailing: IconButton(
+                    onPressed: () {
+                      Clipboard.setData(
+                        ClipboardData(text: profileModel?.username ?? ''),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.copy_outlined,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                ),
+                Gap(6),
+                ProfileItemCard(
+                  label: 'Level',
+                  value: profileModel?.level ?? '',
+                ),
+                Gap(6),
+                ProfileItemCard(
+                  label: 'Years of Experience',
+                  value: profileModel?.experienceYears.toString() ?? '',
+                ),
+                Gap(6),
+                ProfileItemCard(
+                  label: 'Location',
+                  value: profileModel?.address ?? '',
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

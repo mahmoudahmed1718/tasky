@@ -2,7 +2,10 @@ import 'package:api_request/api_request.dart';
 
 class ProfileAction extends ApiRequestAction<UserProfileResponse> {
   @override
-  String get path => '/user/profile';
+  bool get authRequired => true;
+
+  @override
+  String get path => '/auth/profile';
 
   @override
   RequestMethod get method => RequestMethod.GET;

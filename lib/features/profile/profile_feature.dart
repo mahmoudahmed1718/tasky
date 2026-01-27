@@ -5,7 +5,7 @@ import 'package:tasky/features/profile/profile_page.dart';
 
 class ProfileFeature extends Feature {
   @override
-  void get dependencies => {getIt.registerSingleton(() => ProfileBloc())};
+  void get dependencies => {getIt.registerLazySingleton(() => ProfileBloc())};
 
   @override
   String get name => '/profile';
