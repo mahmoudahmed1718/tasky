@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/core/extensions/context_extension.dart';
 import 'package:tasky/core/utils/assets.dart';
 import 'package:tasky/core/utils/styels.dart';
@@ -43,7 +42,7 @@ class _SignInPageState extends State<SignInPage> {
             return Column(
               children: [
                 SizedBox(
-                  height: ContextExtension(context).height * 0.5,
+                  height: context.height * 0.5,
                   child: SvgPicture.asset(
                     Assets.assetsImagesSplashImage,
                     width: ContextExtension(context).width,
@@ -124,7 +123,6 @@ class _SignInPageState extends State<SignInPage> {
                         GesterButton(
                           text: "Sign In",
                           onTap: () async {
-                            print('Sign In tapped');
                             if (_formKey.currentState?.saveAndValidate() ??
                                 false) {
                               final formData = _formKey.currentState!.value;
@@ -134,15 +132,11 @@ class _SignInPageState extends State<SignInPage> {
                                 ...formData,
                                 "phone": fullPhone,
                               };
-                              print('Form Data: $finalData');
+
                               await AuthBloc.to.signIn(
                                 phone: finalData['phone'],
                                 password: finalData['password'],
                               );
-                              AppStorage.to.setToken(
-                                AuthBloc.to.state.user?.accessToken,
-                              );
-
                               HomeFeature.to.go();
                             }
                           },

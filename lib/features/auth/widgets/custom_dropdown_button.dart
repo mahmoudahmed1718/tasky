@@ -26,7 +26,7 @@ DropdownButtonFormField<String> dropdownButtonMethodWidget({
       ),
     ),
     icon: const Icon(Icons.keyboard_arrow_down, color: Colors.grey),
-    value: selectedValue,
+    initialValue: selectedValue,
     items: ["Entry Level", "Mid Level", "Senior", "Expert"]
         .map(
           (String level) => DropdownMenuItem(value: level, child: Text(level)),

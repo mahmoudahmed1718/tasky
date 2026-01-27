@@ -168,12 +168,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                 final formData = _formKey.currentState!.value;
                                 final fullPhone =
                                     "$coutryCode${formData['phone']}";
-
-                                final finalData = {
-                                  ...formData,
-                                  "phone": fullPhone,
-                                };
-
                                 AuthBloc.to.signUp(
                                   phone: fullPhone,
                                   passWord: formData['password'],
@@ -184,11 +178,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   level: formData['level'],
                                   address: formData['address'],
                                 );
-
-                                print('Form Data: $finalData');
-                              } else {
-                                print('Validation failed');
-                              }
+                              } else {}
                             },
                           ),
                           const SizedBox(height: 18),
