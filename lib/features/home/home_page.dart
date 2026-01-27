@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tasky/core/extensions/context_extension.dart';
+import 'package:tasky/app/utils/notification_util.dart';
+import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
-
-import '../../config/app_config.dart';
 import '../../core/app_storage.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,44 +16,71 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.loc.home),
+        title: Text("Logo", style: Styels.textStyle24),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.language),
-            onPressed: () {
-              if (getIt.get<AppStorage>().getLocale() == 'ar') {
-                getIt.get<AppStorage>().setLocale('en');
-              } else {
-                getIt.get<AppStorage>().setLocale('ar');
-              }
-            },
-          ),
-          IconButton(
-            icon: Icon(
-              getIt.get<AppStorage>().getThemeMode() == ThemeMode.light
-                  ? Icons.dark_mode
-                  : Icons.light_mode,
-            ),
-            onPressed: () {
-              if (getIt.get<AppStorage>().getThemeMode() == ThemeMode.light) {
-                getIt.get<AppStorage>().setThemeMode(ThemeMode.dark);
-              } else {
-                getIt.get<AppStorage>().setThemeMode(ThemeMode.light);
-              }
-              setState(() {});
-            },
+          Row(
+            children: [
+              IconButton(onPressed: () {}, icon: Icon(Icons.person, size: 24)),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.settings, size: 24),
+              ),
+              IconButton(
+                onPressed: () async {
+                  NotificationUtil.openDialog(
+                    AlertDialog(
+                      title: Text('Logout'),
+                      content: Text('Are you sure you want to logout?'),
+                      actions: [
+                        TextButton(
+                          child: Text('Cancel'),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                        TextButton(
+                          child: Text('Logout'),
+                          onPressed: () {
+                            AppStorage.to.clearToken();
+                            AuthFeature.to.go();
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                icon: Icon(Icons.logout, size: 24, color: Colors.red),
+              ),
+            ],
           ),
         ],
-      ),
-      body: Center(
-        child: IconButton(
-          onPressed: () {
-            AppStorage.to.clearToken();
-            AuthFeature.to.go();
-          },
-          icon: const Icon(Icons.logout),
-        ),
       ),
     );
   }
 }
+
+
+
+// IconButton(
+//             icon: const Icon(Icons.language),
+//             onPressed: () {
+//               if (getIt.get<AppStorage>().getLocale() == 'ar') {
+//                 getIt.get<AppStorage>().setLocale('en');
+//               } else {
+//                 getIt.get<AppStorage>().setLocale('ar');
+//               }
+//             },
+//           ),
+//           IconButton(
+//             icon: Icon(
+//               getIt.get<AppStorage>().getThemeMode() == ThemeMode.light
+//                   ? Icons.dark_mode
+//                   : Icons.light_mode,
+//             ),
+//             onPressed: () {
+//               if (getIt.get<AppStorage>().getThemeMode() == ThemeMode.light) {
+//                 getIt.get<AppStorage>().setThemeMode(ThemeMode.dark);
+//               } else {
+//                 getIt.get<AppStorage>().setThemeMode(ThemeMode.light);
+//               }
+//               setState(() {});
+//             },
+//           ),
