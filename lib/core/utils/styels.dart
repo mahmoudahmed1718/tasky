@@ -10,6 +10,12 @@ abstract class Styels {
     fontSize: 19,
     fontWeight: FontWeight.w700,
   );
+  static const textStyle16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+  );
+
   static const textStyle14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
