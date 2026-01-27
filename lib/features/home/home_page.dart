@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tasky/app/utils/notification_util.dart';
 import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
+import 'package:tasky/features/home/home_feature.dart';
 import 'package:tasky/features/profile/profile_feature.dart';
 import '../../core/app_storage.dart';
 
@@ -28,7 +29,9 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.person, size: 24),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  HomeFeature.to.goToSettingsPage();
+                },
                 icon: Icon(Icons.settings, size: 24),
               ),
               IconButton(

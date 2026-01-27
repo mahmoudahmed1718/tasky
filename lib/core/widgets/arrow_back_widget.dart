@@ -7,7 +7,7 @@ class Arrowbackwidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(FontAwesomeIcons.arrowLeft),
+      icon: Icon(FontAwesomeIcons.arrowLeft, size: 18),
       onPressed: () => Navigator.pop(context),
     );
   }
