@@ -8,7 +8,6 @@ class SignInAction extends ApiRequestAction<SignInResponse> {
   String get path => 'auth/login';
 
   @override
-  @override
   RequestMethod get method => RequestMethod.POST;
 
   @override
