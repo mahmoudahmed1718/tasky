@@ -1,3 +1,5 @@
+import 'package:tasky/features/tasks/actions/get_tasks_action.dart';
+
 class TaskModel {
   String? id;
   String? image;
@@ -22,17 +24,16 @@ class TaskModel {
     this.updatedAt,
     this.version,
   });
-
-  // TaskModel.fromJson(TaskResponse json) {
-  //   id = json.id;
-  //   image = json.image;
-  //   title = json.title;
-  //   desc = json.desc;
-  //   priority = json.priority;
-  //   status = json.status;
-  //   user = json.user;
-  //   createdAt = json.createdAt;
-  //   updatedAt = json.updatedAt;
-  //   version = json.version;
-  // }
+  TaskModel.fromJson(TaskActionResponse json) {
+    id = json.id;
+    image = json.image;
+    title = json.title;
+    desc = json.desc;
+    priority = json.priority;
+    status = json.status;
+    user = json.user;
+    createdAt = json.createdAt;
+    updatedAt = json.updatedAt;
+    version = json.version;
+  }
 }
