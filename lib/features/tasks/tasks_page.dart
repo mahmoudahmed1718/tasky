@@ -9,6 +9,7 @@ import 'package:tasky/features/tasks/widgets/choise_chip_widget.dart';
 import 'package:tasky/features/tasks/widgets/task_item.dart';
 import 'package:tasky/features/profile/bloc/profile_bloc.dart';
 import 'package:tasky/features/profile/profile_feature.dart';
+import 'package:tasky/theme/app_colors.dart';
 import '../../core/app_storage.dart';
 
 class TasksPage extends StatefulWidget {
@@ -69,7 +70,15 @@ class _HomePageState extends State<TasksPage> {
           ),
         ],
       ),
-
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(36)),
+        backgroundColor: AppColors.primaryColor,
+        foregroundColor: Colors.white,
+        onPressed: () {
+          TasksFeature.to.goToCreateNewTaskPage();
+        },
+        child: const Icon(Icons.add, size: 32),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
