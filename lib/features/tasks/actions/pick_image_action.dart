@@ -1,0 +1,19 @@
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+
+class PickImageAction {
+  final ImagePicker _picker = ImagePicker();
+
+  Future<File?> pickImage(ImageSource source) async {
+    final XFile? image = await _picker.pickImage(
+      source: source,
+      imageQuality: 80,
+    );
+
+    if (image != null) {
+      return File(image.path);
+    }
+
+    return null;
+  }
+}
