@@ -1,6 +1,7 @@
 import 'package:app_forms/app_forms.dart';
-import 'package:dotted_border/dotted_border.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_dotted_border/flutter_dotted_border.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
@@ -25,6 +26,13 @@ class CreateNewTaskPage extends StatelessWidget {
         child: ListView(
           children: [
             DottedBorder(
+              borderType: RoundedRectDottedBorder(
+                color: AppColors.primaryColor,
+                dashGap: 4,
+                dashWidth: 4,
+                strokeWidth: 1,
+                radius: Radius.circular(12),
+              ),
               child: InkWell(
                 onTap: () async {
                   final image = await PickImageAction().pickImage(
