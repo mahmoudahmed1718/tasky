@@ -6,7 +6,7 @@ import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/features/auth/actions/sign_in_action.dart';
 import 'package:tasky/features/auth/actions/sign_up_action.dart';
 import 'package:tasky/features/auth/bloc/auth_state.dart';
-import 'package:tasky/features/home/tasks_feature.dart';
+import 'package:tasky/features/tasks/tasks_feature.dart';
 
 class AuthBloc extends Cubit<AuthState> {
   AuthBloc() : super(const AuthState());

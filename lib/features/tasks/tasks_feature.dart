@@ -1,5 +1,5 @@
 import 'package:app_features/app_features.dart';
-import 'package:tasky/features/home/pages/settings_page.dart';
+import 'package:tasky/features/tasks/pages/settings_page.dart';
 import 'bloc/tasks_bloc.dart';
 import '../../config/app_config.dart';
 import 'tasks_page.dart';

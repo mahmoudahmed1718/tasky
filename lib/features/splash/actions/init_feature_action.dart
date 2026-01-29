@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/core/utils/api_util.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
-import 'package:tasky/features/home/tasks_feature.dart';
+import 'package:tasky/features/tasks/tasks_feature.dart';
 import 'package:tasky/features/splash/splash_feature.dart';
 
 class InitFeatureAction {
