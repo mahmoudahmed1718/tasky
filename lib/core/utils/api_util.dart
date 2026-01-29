@@ -1,8 +1,8 @@
 import 'package:api_request/api_request.dart';
+import 'package:requests_inspector/requests_inspector.dart';
 import 'package:tasky/app/utils/notification_util.dart';
 import 'package:tasky/config/app_config.dart';
 import 'package:tasky/core/app_storage.dart';
-import 'package:tasky/core/extensions/context_extension.dart';
 import 'package:flutter/widgets.dart';
 
 class ApiUtils {
@@ -11,7 +11,7 @@ class ApiUtils {
       baseUrl: 'https://todo.iraqsapp.com/',
       getToken: () => getIt.get<AppStorage>().getToken(),
       tokenType: ApiRequestOptions.bearer,
-
+      interceptors: [RequestsInspectorInterceptor()],
       onError: (error) {
         NotificationUtil.showError(error.message);
       },
@@ -19,7 +19,7 @@ class ApiUtils {
         //Force logout user form app
         getIt.get<AppStorage>().setToken(null);
       },
-      defaultHeaders: {'Content-Language': context.locale.languageCode},
+      defaultHeaders: {'Content-Language': 'en'},
     );
   }
 

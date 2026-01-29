@@ -1,3 +1,5 @@
+import 'package:tasky/features/profile/action/profile_action.dart';
+
 class ProfileModel {
   String? id;
   String? displayName;
@@ -22,16 +24,16 @@ class ProfileModel {
     this.updatedAt,
   });
 
-  ProfileModel.fromJson(Map<String, dynamic> json) {
-    id = json['_id'] as String?;
-    displayName = json['displayName'] as String?;
-    username = json['username'] as String?;
-    roles = (json['roles'] as List?)?.map((e) => e.toString()).toList();
-    active = json['active'] as bool?;
-    experienceYears = json['experienceYears'] as int?;
-    address = json['address'] as String?;
-    level = json['level'] as String?;
-    createdAt = json['createdAt'] as String?;
-    updatedAt = json['updatedAt'] as String?;
+  ProfileModel.fromJson(UserProfileResponse json) {
+    id = json.id;
+    displayName = json.displayName;
+    username = json.username;
+    roles = json.roles;
+    active = json.active;
+    experienceYears = json.experienceYears;
+    address = json.address;
+    level = json.level;
+    createdAt = json.createdAt;
+    updatedAt = json.updatedAt;
   }
 }

@@ -6,6 +6,7 @@ import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/features/auth/actions/sign_in_action.dart';
 import 'package:tasky/features/auth/actions/sign_up_action.dart';
 import 'package:tasky/features/auth/bloc/auth_state.dart';
+import 'package:tasky/features/home/home_feature.dart';
 
 class AuthBloc extends Cubit<AuthState> {
   AuthBloc() : super(const AuthState());
@@ -35,6 +36,7 @@ class AuthBloc extends Cubit<AuthState> {
               ),
             );
             AppStorage.to.setToken(response?.accessToken);
+            HomeFeature.to.go();
           },
           onError: (error) {
             NotificationUtil.showError(error.message);

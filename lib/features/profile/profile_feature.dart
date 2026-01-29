@@ -18,5 +18,4 @@ class ProfileFeature extends Feature {
       builder: (context, state) => const ProfilePage(),
     ),
   ];
-  void goToProfilePage() => push(name: name);
 }

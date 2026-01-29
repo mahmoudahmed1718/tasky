@@ -1,8 +1,11 @@
+import 'package:app_features/app_features.dart';
 import 'package:flutter/material.dart';
+import 'package:tasky/app/app_feature.dart';
 import 'package:tasky/app/utils/notification_util.dart';
 import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
 import 'package:tasky/features/home/home_feature.dart';
+import 'package:tasky/features/profile/bloc/profile_bloc.dart';
 import 'package:tasky/features/profile/profile_feature.dart';
 import '../../core/app_storage.dart';
 
@@ -23,8 +26,9 @@ class _HomePageState extends State<HomePage> {
           Row(
             children: [
               IconButton(
-                onPressed: () {
-                  ProfileFeature.to.goToProfilePage();
+                onPressed: () async {
+                  await ProfileBloc.to.getProfile();
+                  ProfileFeature.to.push();
                 },
                 icon: Icon(Icons.person, size: 24),
               ),
@@ -43,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                       actions: [
                         TextButton(
                           child: Text('Cancel'),
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () => AppFeatures.pop(),
                         ),
                         TextButton(
                           child: Text('Logout'),

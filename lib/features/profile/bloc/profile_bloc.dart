@@ -17,16 +17,7 @@ class ProfileBloc extends Cubit<ProfileState> {
           onDone: () => NotificationUtil.hideLoading(),
           onSuccess: (response) {
             emit(
-              state.copyWith(
-                profileModel: ProfileModel(
-                  id: response?.id,
-                  displayName: response?.displayName,
-                  address: response?.address,
-                  level: response?.level,
-                  experienceYears: response?.experienceYears,
-                  username: response?.username,
-                ),
-              ),
+              state.copyWith(profileModel: ProfileModel.fromJson(response!)),
             );
           },
           onError: (error) {

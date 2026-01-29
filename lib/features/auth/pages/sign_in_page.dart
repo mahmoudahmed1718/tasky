@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:tasky/config/app_config.dart';
+import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/core/extensions/context_extension.dart';
 import 'package:tasky/core/utils/assets.dart';
 import 'package:tasky/core/utils/styels.dart';
@@ -11,7 +13,6 @@ import 'package:tasky/core/widgets/gester_button.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
 import 'package:tasky/features/auth/bloc/auth_bloc.dart';
 import 'package:tasky/features/auth/bloc/auth_state.dart';
-import 'package:tasky/features/home/home_feature.dart';
 
 import 'package:tasky/theme/app_colors.dart';
 
@@ -35,6 +36,20 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.language),
+            onPressed: () {
+              if (getIt.get<AppStorage>().getLocale() == 'ar') {
+                getIt.get<AppStorage>().setLocale('en');
+              } else {
+                getIt.get<AppStorage>().setLocale('ar');
+              }
+            },
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: BlocBuilder<AuthBloc, AuthState>(
           bloc: AuthBloc.to,
@@ -137,7 +152,6 @@ class _SignInPageState extends State<SignInPage> {
                                 phone: finalData['phone'],
                                 password: finalData['password'],
                               );
-                              HomeFeature.to.go();
                             }
                           },
                         ),

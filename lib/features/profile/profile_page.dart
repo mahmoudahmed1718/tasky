@@ -9,19 +9,8 @@ import 'package:tasky/features/profile/bloc/profile_state.dart';
 import 'package:tasky/features/profile/widgets/profile_card_widget.dart';
 import 'package:tasky/theme/app_colors.dart';
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
-
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  @override
-  void initState() {
-    ProfileBloc.to.getProfile();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +26,6 @@ class _ProfilePageState extends State<ProfilePage> {
           bloc: ProfileBloc.to,
           builder: (context, state) {
             final profileModel = state.profileModel;
-
             return ListView(
               children: [
                 Gap(16),

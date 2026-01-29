@@ -1,21 +1,17 @@
 import 'package:app_features/app_features.dart';
 import 'package:requests_inspector/requests_inspector.dart';
-import 'package:flutter/foundation.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:tasky/l10n/app_localizations.dart';
-
 import '../config/app_config.dart';
 import '../core/app_storage.dart';
 import 'theme/app_theme.dart';
 
 void main() async {
   await AppConfig.init();
-  runApp(const RequestsInspector(enabled: kDebugMode, child: MyApp()));
+  runApp(const RequestsInspector(enabled: true, child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
