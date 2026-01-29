@@ -4,20 +4,20 @@ import 'package:gap/gap.dart';
 import 'package:tasky/app/utils/notification_util.dart';
 import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
-import 'package:tasky/features/home/home_feature.dart';
+import 'package:tasky/features/home/tasks_feature.dart';
 import 'package:tasky/features/home/widgets/choise_chip_widget.dart';
 import 'package:tasky/features/home/widgets/task_item.dart';
 import 'package:tasky/features/profile/bloc/profile_bloc.dart';
 import 'package:tasky/features/profile/profile_feature.dart';
 import '../../core/app_storage.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class TasksPage extends StatefulWidget {
+  const TasksPage({super.key});
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<TasksPage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<TasksPage> {
   final tabs = ['All', 'Inprogress', 'Waiting', 'Finished'];
   String selectedTab = 'All';
   @override
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               ),
               IconButton(
                 onPressed: () {
-                  HomeFeature.to.goToSettingsPage();
+                  TasksFeature.to.goToSettingsPage();
                 },
                 icon: Icon(Icons.settings, size: 24),
               ),

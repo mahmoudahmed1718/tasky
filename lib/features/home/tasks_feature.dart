@@ -1,19 +1,19 @@
 import 'package:app_features/app_features.dart';
 import 'package:tasky/features/home/pages/settings_page.dart';
-import 'bloc/home_bloc.dart';
+import 'bloc/tasks_bloc.dart';
 import '../../config/app_config.dart';
-import 'home_page.dart';
+import 'tasks_page.dart';
 
-class HomeFeature extends Feature {
+class TasksFeature extends Feature {
   @override
-  void get dependencies => {getIt.registerLazySingleton(() => HomeBloc())};
+  void get dependencies => {getIt.registerLazySingleton(() => TaskBloc())};
   @override
   String get name => '/home';
   String get settingPage => '/settings';
-  static HomeFeature get to => AppFeatures.get();
+  static TasksFeature get to => AppFeatures.get();
   @override
   List<GoRoute> get routes => [
-    GoRoute(path: name, name: name, builder: (_, state) => const HomePage()),
+    GoRoute(path: name, name: name, builder: (_, state) => const TasksPage()),
     GoRoute(
       path: settingPage,
       name: settingPage,

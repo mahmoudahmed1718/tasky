@@ -6,7 +6,7 @@ import 'package:tasky/features/profile/profile_feature.dart';
 import '../app/app_feature.dart';
 
 import '../core/app_storage.dart';
-import '../features/home/home_feature.dart';
+import '../features/home/tasks_feature.dart';
 import '../features/splash/splash_feature.dart';
 
 final getIt = GetIt.instance;
@@ -20,7 +20,7 @@ class AppConfig {
       features: [
         AppFeature(),
         SplashFeature(),
-        HomeFeature(),
+        TasksFeature(),
         AuthFeature(),
         ProfileFeature(),
       ],

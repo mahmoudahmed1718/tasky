@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/core/utils/api_util.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
-import 'package:tasky/features/home/home_feature.dart';
+import 'package:tasky/features/home/tasks_feature.dart';
 import 'package:tasky/features/splash/splash_feature.dart';
 
 class InitFeatureAction {
@@ -15,7 +15,7 @@ class InitFeatureAction {
     final token = AppStorage.to.getToken();
     if (isOnboardingSeen) {
       if (token != null) {
-        HomeFeature.to.go();
+        TasksFeature.to.go();
       } else {
         AuthFeature.to.go();
       }
