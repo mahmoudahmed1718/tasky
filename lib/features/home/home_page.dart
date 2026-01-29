@@ -6,6 +6,7 @@ import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
 import 'package:tasky/features/home/home_feature.dart';
 import 'package:tasky/features/home/widgets/choise_chip_widget.dart';
+import 'package:tasky/features/home/widgets/task_item.dart';
 import 'package:tasky/features/profile/bloc/profile_bloc.dart';
 import 'package:tasky/features/profile/profile_feature.dart';
 import '../../core/app_storage.dart';
@@ -77,6 +78,19 @@ class _HomePageState extends State<HomePage> {
           Gap(8),
           ChoiceChipWidget(),
           Gap(16),
+          Expanded(
+            child: ListView(
+              children: [
+                TaskItem(
+                  title: "Grocery Shopping",
+                  description: "This application is designed for...",
+                  status: "Waiting",
+                  priority: "Medium",
+                  date: "30/12/2022",
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
