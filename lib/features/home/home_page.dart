@@ -1,10 +1,11 @@
 import 'package:app_features/app_features.dart';
 import 'package:flutter/material.dart';
-import 'package:tasky/app/app_feature.dart';
+import 'package:gap/gap.dart';
 import 'package:tasky/app/utils/notification_util.dart';
 import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/features/auth/auth_feature.dart';
 import 'package:tasky/features/home/home_feature.dart';
+import 'package:tasky/features/home/widgets/choise_chip_widget.dart';
 import 'package:tasky/features/profile/bloc/profile_bloc.dart';
 import 'package:tasky/features/profile/profile_feature.dart';
 import '../../core/app_storage.dart';
@@ -66,9 +67,23 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+
+      body: Column(
+        children: [
+          Text(
+            "My Tasks",
+            style: Styels.textStyle16.copyWith(color: Colors.grey),
+          ),
+          Gap(8),
+          ChoiceChipWidget(),
+          Gap(16),
+        ],
+      ),
     );
   }
 }
+
+
 
 
 
