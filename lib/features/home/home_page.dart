@@ -13,12 +13,13 @@ import '../../core/app_storage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final tabs = ['All', 'Inprogress', 'Waiting', 'Finished'];
+  String selectedTab = 'All';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,29 +70,44 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
 
-      body: Column(
-        children: [
-          Text(
-            "My Tasks",
-            style: Styels.textStyle16.copyWith(color: Colors.grey),
-          ),
-          Gap(8),
-          ChoiceChipWidget(),
-          Gap(16),
-          Expanded(
-            child: ListView(
-              children: [
-                TaskItem(
-                  title: "Grocery Shopping",
-                  description: "This application is designed for...",
-                  status: "Waiting",
-                  priority: "Medium",
-                  date: "30/12/2022",
-                ),
-              ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "My Tasks",
+              style: Styels.textStyle16.copyWith(color: Colors.grey),
             ),
-          ),
-        ],
+            Gap(8),
+            Wrap(
+              spacing: 6,
+              children: tabs.map((tab) {
+                final isSelected = selectedTab == tab;
+                return ChoiceChipWidget(
+                  title: tab,
+                  onSelected: (tab) {},
+                  selected: isSelected,
+                );
+              }).toList(),
+            ),
+
+            Gap(16),
+            Expanded(
+              child: ListView(
+                children: [
+                  TaskItem(
+                    title: "Grocery Shopping",
+                    description: "This application is designed for...",
+                    status: "Waiting",
+                    priority: "Medium",
+                    date: "30/12/2022",
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
