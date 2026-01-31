@@ -12,8 +12,16 @@ import 'package:tasky/core/widgets/gester_button.dart';
 import 'package:tasky/features/tasks/actions/pick_image_action.dart';
 import 'package:tasky/theme/app_colors.dart';
 
-class CreateNewTaskPage extends StatelessWidget {
+class CreateNewTaskPage extends StatefulWidget {
   const CreateNewTaskPage({super.key});
+
+  @override
+  State<CreateNewTaskPage> createState() => _CreateNewTaskPageState();
+}
+
+class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
+  final _formKey = GlobalKey<FormBuilderState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,6 +85,7 @@ class CreateNewTaskPage extends StatelessWidget {
             ),
             Gap(12),
             FormBuilder(
+              key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -98,11 +107,15 @@ class CreateNewTaskPage extends StatelessWidget {
                   ),
                   Gap(14),
                   Text("Task Description", style: Styels.textStyle14),
+
                   Gap(6),
                   FormBuilderTextField(
                     name: "task title",
                     maxLines: 6,
                     onSaved: (newValue) {},
+                    validator: FormBuilderValidators.required(
+                      errorText: "Task title is required",
+                    ),
                     decoration: InputDecoration(
                       hint: Text(
                         "Enter Task Description",
@@ -119,12 +132,17 @@ class CreateNewTaskPage extends StatelessWidget {
                   Gap(6),
                   FormBuilderDropdown<String>(
                     name: 'priority',
+                    validator: FormBuilderValidators.required(
+                      errorText: "Prority is required",
+                    ),
+                    onSaved: (newValue) {},
                     decoration: InputDecoration(
                       filled: true, // ✅ REQUIRED
                       fillColor: const Color(
                         0xFFF4F1FF,
                       ), // light purple background
                       hintText: "Select Priority",
+
                       hintStyle: Styels.textStyle14.copyWith(
                         color: AppColors.primaryColor,
                         fontWeight: FontWeight.w600,
@@ -163,6 +181,10 @@ class CreateNewTaskPage extends StatelessWidget {
                   Gap(6),
                   FormBuilderDateTimePicker(
                     name: 'data',
+                    validator: FormBuilderValidators.required(
+                      errorText: "Task title is required",
+                    ),
+                    onSaved: (newValue) {},
                     decoration: InputDecoration(
                       hint: Text(
                         'Choose due date.... ',
@@ -182,7 +204,12 @@ class CreateNewTaskPage extends StatelessWidget {
               ),
             ),
             Gap(24),
-            GesterButton(text: "Add Task", onTap: () {}),
+            GesterButton(
+              text: "Add Task",
+              onTap: () {
+                if (_formKey.currentState?.saveAndValidate() ?? false) {}
+              },
+            ),
           ],
         ),
       ),
