@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tasky/core/extensions/context_extension.dart';
 import 'package:tasky/core/utils/styels.dart';
 import 'package:tasky/core/widgets/arrow_back_widget.dart';
+import 'package:tasky/core/widgets/gester_button.dart';
 import 'package:tasky/features/tasks/actions/pick_image_action.dart';
 import 'package:tasky/theme/app_colors.dart';
 
@@ -113,9 +114,75 @@ class CreateNewTaskPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Gap(14),
+                  Text("Priority", style: Styels.textStyle14),
+                  Gap(6),
+                  FormBuilderDropdown<String>(
+                    name: 'priority',
+                    decoration: InputDecoration(
+                      filled: true, // ✅ REQUIRED
+                      fillColor: const Color(
+                        0xFFF4F1FF,
+                      ), // light purple background
+                      hintText: "Select Priority",
+                      hintStyle: Styels.textStyle14.copyWith(
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.flag_outlined,
+                        color: AppColors.primaryColor,
+                        size: 24,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 14,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: ['Low Priority', 'Medium Priority', 'High Priority']
+                        .map(
+                          (e) => DropdownMenuItem(
+                            value: e,
+                            child: Text(
+                              e,
+                              style: Styels.textStyle19.copyWith(
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  Gap(14),
+                  Text('Date', style: Styels.textStyle14),
+                  Gap(6),
+                  FormBuilderDateTimePicker(
+                    name: 'data',
+                    decoration: InputDecoration(
+                      hint: Text(
+                        'Choose due date.... ',
+                        style: Styels.textStyle14,
+                      ),
+                      suffixIcon: Icon(
+                        Icons.calendar_month_outlined,
+                        color: AppColors.primaryColor,
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
+            Gap(24),
+            GesterButton(text: "Add Task", onTap: () {}),
           ],
         ),
       ),
