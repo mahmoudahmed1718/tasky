@@ -39,66 +39,65 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
           builder: (context, state) {
             return ListView(
               children: [
-                DottedBorder(
-                  borderType: RoundedRectDottedBorder(
-                    color: AppColors.primaryColor,
-                    dashGap: 4,
-                    dashWidth: 4,
-                    strokeWidth: 1,
-                    radius: Radius.circular(12),
-                  ),
-                  child: InkWell(
-                    onTap: () async {
-                      final image = await PickImageAction().pickImage(
-                        ImageSource.gallery,
-                      );
-
-                      if (image != null) {
-                        final String imagePath = image.path;
-                        print("Selected Image Path: $imagePath");
-                      }
-                    },
-
-                    child: Container(
-                      height: 54, // Adjust based on your needs
-                      width: context.width,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.add_photo_alternate_outlined,
-                            color: AppColors.primaryColor,
-                            size: 28,
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            "Add Img",
-                            style: TextStyle(
-                              color: Colors.deepPurple,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
                 Gap(12),
                 FormBuilder(
                   key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      DottedBorder(
+                        borderType: RoundedRectDottedBorder(
+                          color: AppColors.primaryColor,
+                          dashGap: 4,
+                          dashWidth: 4,
+                          strokeWidth: 1,
+                          radius: Radius.circular(12),
+                        ),
+                        child: InkWell(
+                          onTap: () async {
+                            final image = await PickImageAction().pickImage(
+                              ImageSource.gallery,
+                            );
+
+                            if (image != null) {
+                              final String imagePath = image.path;
+                              print("Selected Image Path: $imagePath");
+                            }
+                          },
+
+                          child: Container(
+                            height: 54, // Adjust based on your needs
+                            width: context.width,
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.add_photo_alternate_outlined,
+                                  color: AppColors.primaryColor,
+                                  size: 28,
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  "Add Img",
+                                  style: TextStyle(
+                                    color: Colors.deepPurple,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                       Text("Task Title", style: Styels.textStyle14),
                       Gap(6),
                       FormBuilderTextField(
                         name: "task title",
-                        onSaved: (newValue) {},
                         validator: FormBuilderValidators.required(
                           errorText: "Task title is required",
                         ),
@@ -117,7 +116,6 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                       FormBuilderTextField(
                         name: "task description",
                         maxLines: 6,
-                        onSaved: (newValue) {},
                         validator: FormBuilderValidators.required(
                           errorText: "Task title is required",
                         ),
@@ -190,7 +188,6 @@ class _CreateNewTaskPageState extends State<CreateNewTaskPage> {
                         validator: FormBuilderValidators.required(
                           errorText: "Task title is required",
                         ),
-                        onSaved: (newValue) {},
                         decoration: InputDecoration(
                           hint: Text(
                             'Choose due date.... ',
