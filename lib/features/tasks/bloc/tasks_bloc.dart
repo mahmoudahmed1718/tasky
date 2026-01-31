@@ -2,6 +2,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasky/app/models/task_model.dart';
 import 'package:tasky/app/utils/notification_util.dart';
+import 'package:tasky/config/app_config.dart';
 import 'package:tasky/core/app_storage.dart';
 import 'package:tasky/features/tasks/actions/create_task_acion.dart';
 
@@ -9,7 +10,7 @@ import '../../tasks/bloc/tasks_state.dart';
 
 class TaskBloc extends Cubit<TasksState> {
   TaskBloc() : super(const TasksState());
-
+  static TaskBloc to = getIt.get();
   Future<void> addTask({
     required String title,
     required String description,
